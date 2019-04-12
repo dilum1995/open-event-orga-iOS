@@ -13,7 +13,7 @@ import ObjectMapper
 
 class APIClient {
     
-   var kBaseURL = "https://open-event-api-dev.herokuapp.com/v1"
+   var kBaseURL = ControllerConstants.CommonURL.Debug.baseURL
     
     static let shared = APIClient() // /users/checkEmail
 
@@ -24,7 +24,7 @@ class APIClient {
     //http get method api calls should use this function
     func get<T:Mappable>(_ endPoint: String, mappingClass: T.Type, completion: @escaping APIResponseCallback<T>) {
         guard let url = URL(string: "\(kBaseURL)\(endPoint)") else{
-            print("Error when URL concatanation.")
+            print(ControllerConstants.Errors.APIRequestErrors.URLConcatenation)
             return
         }
         Alamofire.request(url).responseObject { (response: DataResponse<T>) in
@@ -40,7 +40,7 @@ class APIClient {
     func post<T:Mappable>(_ endPoint: String, withParams params: [String: Any], type: T, completion: @escaping APIResponseCallback<T>) throws {
         
         guard let url = URL(string: "\(kBaseURL)\(endPoint)") else{
-            print("Error when URL concatanation.")
+            print(ControllerConstants.Errors.APIRequestErrors.URLConcatenation)
             return
         }
         

@@ -16,7 +16,7 @@ class UserService {
     public static func checkEmailAvailability(_ email: String, completion: @escaping (EmailAvailabilityResponse) -> ()) {
         do {
             
-            try APIClient.shared.post("/users/checkEmail", withParams: ["email": email], type: EmailAvailabilityResponse()) { (urlResponse, result, error) in
+            try APIClient.shared.post(ControllerConstants.CommonURL.checkEmail, withParams: ["email": email], type: EmailAvailabilityResponse()) { (urlResponse, result, error) in
                 switch urlResponse?.statusCode {
                     case 422, 200:
                         completion(result!)

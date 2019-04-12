@@ -15,8 +15,6 @@ import NVActivityIndicatorView
 
 extension WelcomeViewController {
     
-    
-    
     func addTapGesture() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
@@ -33,7 +31,7 @@ extension WelcomeViewController {
     func prepareEmailField() {
         emailTextField.placeholderNormalColor = .iOSGray()
         emailTextField.placeholderActiveColor = .defaultColor()
-        emailTextField.placeholder = "Email"
+        emailTextField.placeholder = ControllerConstants.Placeholders.emailAddress
         emailTextField.dividerNormalColor = .iOSGray()
         emailTextField.dividerActiveColor = .red
         emailTextField.textColor = .black
@@ -52,7 +50,7 @@ extension WelcomeViewController {
         addressTextField.placeholderActiveColor = .defaultColor()
         addressTextField.dividerNormalColor = .iOSGray()
         addressTextField.dividerActiveColor = .defaultColor()
-        addressTextField.text = "https://open-event-api-dev.herokuapp.com/"
+        addressTextField.text = ControllerConstants.CommonURL.Debug.baseURL
         addressTextField.textColor = .black
     }
    
@@ -62,13 +60,13 @@ extension WelcomeViewController {
         if sender.checkState == .checked {
             addressTextField.tag = 1
             addressTextField.isUserInteractionEnabled = false
-            addressTextField.text = "https://open-event-api-dev.herokuapp.com/"
+            addressTextField.text = ControllerConstants.CommonURL.Debug.baseURL
             addressTextField.placeholder = ""
         } else {
             addressTextField.tag = 0
             addressTextField.isUserInteractionEnabled = true
             addressTextField.text = ""
-            addressTextField.placeholder = "Custom Server URL"
+            addressTextField.placeholder = ControllerConstants.Placeholders.customServerURL
             
             APIClient.shared.kBaseURL =  addressTextField.text!
             print("Custom URL has been called")
